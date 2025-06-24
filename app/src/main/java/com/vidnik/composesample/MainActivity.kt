@@ -18,9 +18,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -162,17 +168,44 @@ fun ComposeSample() {
             )
         }
     }*/
-
+    /**
+     * Counter with a remember
+     */
+    /*var count by remember {
+        mutableIntStateOf(0)
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "0")
+        Text(text = count.toString(), fontSize = 30.sp, color = Color.Black)
         Button(onClick = {
-
+            count++
         }) {
             Text(text = "Click me!")
+        }
+    }*/
+    /**
+     * Basic UI add names to the list
+     */
+    var name by remember {
+        mutableStateOf("")
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Row (
+            modifier = Modifier.fillMaxSize()
+        ) {
+            OutlinedTextField(
+                value = name,
+                onValueChange = { text ->
+
+                }
+            )
         }
     }
 }
