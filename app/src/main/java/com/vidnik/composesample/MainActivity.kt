@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -192,20 +193,39 @@ fun ComposeSample() {
     var name by remember {
         mutableStateOf("")
     }
+    var names by remember {
+        mutableStateOf(listOf<String>())
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Row (
+        Row(
             modifier = Modifier.fillMaxSize()
         ) {
             OutlinedTextField(
                 value = name,
                 onValueChange = { text ->
-
+                    name = text
                 }
             )
+            Button(onClick = {
+                if (name.isNotBlank()) {
+                    names = names + name
+                }
+            }) {
+                Text(text = "Add")
+            }
+        }
+
+        LazyColumn {
+            items(names) { currentName ->
+                Text(
+                    text = currentName,
+                    color = Color.Black
+                )
+            }
         }
     }
 }
